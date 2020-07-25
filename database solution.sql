@@ -58,7 +58,15 @@ GROUP BY city, country
 ;
 
 --8 
-
+SELECT wallets.ledger_location AS country,
+       transfers.kind AS transferkind,
+       count(transfers.send_amount_scalar) AS volume
+FROM "PostgreSQL".wallets
+JOIN "PostgreSQL".transfers 
+ON wallets.wallet_id = transfers.source_wallet_id
+WHERE transfers.when_created > NOW() - INTERVAL '7 days'
+GROUP BY country, transferkind
+ORDER BY country ASC, transferkind DESC;
 
 
 --10
