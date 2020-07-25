@@ -1,23 +1,19 @@
 --1 The number of users that Wave has can be found in the users table by using the COUNT function to get the number of records in the table
-
 SELECT COUNT(*) FROM "PostgreSQL".users;
 
 
 --2 Number of 'sent' transactions that were made in CFA
-
 SELECT COUNT(*) FROM "PostgreSQL".transfers
 where send_amount_currency = 'CFA';
 
 
 --3 Number of users that have sent a transfer in CFA
-
 SELECT COUNT(distinct u_id) FROM "PostgreSQL".transfers
 where send_amount_currency = 'CFA';
 
 
 --4 Number of agent transactions grouped by months in 2018. month_created is the month extracted from the when_created field 
-
-SELECT EXTRACT(month from when_created) as month_created, COUNT(*) FROM "PostgreSQL".agent_transactions
+SELECT EXTRACT(month FROM when_created) as month_created, COUNT(*) FROM "PostgreSQL".agent_transactions
 WHERE EXTRACT(year from when_created) = '2018'
 GROUP BY EXTRACT(month from when_created)
 
