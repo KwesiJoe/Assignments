@@ -60,7 +60,7 @@ GROUP BY city, country
 --8 
 SELECT wallets.ledger_location AS country,
        transfers.kind AS transferkind,
-       count(transfers.send_amount_scalar) AS volume
+       SUM(transfers.send_amount_scalar) AS volume
 FROM "PostgreSQL".wallets
 JOIN "PostgreSQL".transfers 
 ON wallets.wallet_id = transfers.source_wallet_id
