@@ -63,6 +63,7 @@ GROUP BY city, country
 SELECT wallets.ledger_location AS country,
        transfers.kind AS transferkind,
        SUM(transfers.send_amount_scalar) AS volume
+INTO “send volume by country and kind”
 FROM "PostgreSQL".wallets
 JOIN "PostgreSQL".transfers 
 ON wallets.wallet_id = transfers.source_wallet_id
@@ -70,8 +71,24 @@ WHERE transfers.when_created > NOW() - INTERVAL '7 days'
 GROUP BY country, transferkind
 ORDER BY country ASC, transferkind DESC;
 
+--9 “send volume by country and kind” and number of unique senders
+SELECT  wallets.ledger_location AS  country,
+       transfers.kind AS  transferkind,
+       sum(transfers.send_amount_scalar) AS  volume,
+       COUNT (transfers.send_amount_scalar) AS transactionCount,
+       COUNT(distinct transfers.source_wallet_id) AS uniqueWallets
+FROM "PostgreSQL".wallets
+JOIN "PostgreSQL".transfers 
+ON wallets.wallet_id = transfers.source_wallet_id
+WHERE transfers.when_created > NOW() - INTERVAL  '7 days'
+GROUP by country,
+         transferkind
+ORDER by country ASC,
+         transferkind DESC;
 
---10
+--10 wallets that sent more than 10,000,000 CFA in transfers in the last month
+--(as identified by the source_wallet_id column on the transfers table), and how much each
+--sent
 SELECT wallets.wallet_id, sum(transfers.send_amount_scalar) 
 FROM "PostgreSQL".wallets
 JOIN "PostgreSQL".transfers
