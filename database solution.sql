@@ -57,7 +57,9 @@ WHERE agent_transactions.when_created > NOW() - INTERVAL '7 days'
 GROUP BY city, country
 ;
 
---8 
+--8 “send volume by country and kind” table: the total volume of transfers (by
+--send_amount_scalar) sent in the past week, grouped by country and transfer kind. 
+
 SELECT wallets.ledger_location AS country,
        transfers.kind AS transferkind,
        SUM(transfers.send_amount_scalar) AS volume
