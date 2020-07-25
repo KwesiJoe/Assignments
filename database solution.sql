@@ -4,12 +4,12 @@ SELECT COUNT(*) FROM "PostgreSQL".users;
 
 --2 Number of 'sent' transactions that were made in CFA
 SELECT COUNT(*) FROM "PostgreSQL".transfers
-where send_amount_currency = 'CFA';
+WHERE send_amount_currency = 'CFA';
 
 
 --3 Number of users that have sent a transfer in CFA
 SELECT COUNT(distinct u_id) FROM "PostgreSQL".transfers
-where send_amount_currency = 'CFA';
+WHERE send_amount_currency = 'CFA';
 
 
 --4 Number of agent transactions grouped by months in 2018. month_created is the month extracted from the when_created field 
