@@ -15,7 +15,7 @@ PayRate = 5  # signifies 5 dollars per hour
 task_name = input("Please enter the name of the task: \n")#specify name to easily identify task.
 answer = input("Are you starting now?Please type Y for yes and N for no. I'll start the time if you choose Y \n")#ask if user is starting now
 if answer == "Y" or answer == "y": # allow room for capitalization error
-    print("All the best %s! Call out my name when you're done. Hit enter if you understand" %username)
+    print("All the best %s! Call out my name when you're done.I'll be right here.\n" %username)
 
     dt = datetime.now()
     first_year = dt.year
@@ -25,13 +25,11 @@ if answer == "Y" or answer == "y": # allow room for capitalization error
     first_minute = dt.minute
 
     while True:
-##        if input() == "Elsie" or input() == "elsie":
-##            break
-        if input() != "Elsie" or input() != "elsie":
-            print("Are you referring to me?\nMy name is Elsie, call it out when you're done, I'll right here!")
-            continue
-        elif input() == "Elsie" or input() == "elsie":
+        stop_button = input()
+        if stop_button == "Elsie" or stop_button == "elsie":
             break
+        else:
+            print("Are you referring to me?\nMy name is Elsie, call it out when you're done, I'll be right here.\n")
         
     st = datetime.now()
     second_year = st.year
@@ -164,7 +162,7 @@ difference_between_datetimes = second_date - first_date
 hours_calculated = difference_between_datetimes.total_seconds()/3600
 total_amount_received = hours_calculated * PayRate
 currency = "$"
-print('Great work %s! You spent %f minutes, which is %f %s on the task. And you earned %s%f' % (username,hours_calculated*60,hours_calculated,'hours',currency,total_amount_received))
+print('Great work %s! You spent %f minutes, which is %f %s on the task. And you earned %s%f\n' % (username,hours_calculated*60,hours_calculated,'hours',currency,total_amount_received))
 print('Your bill is $200')
 time.sleep(5)
 print("Don't mind me, I'm just kidding.\nBye %s, hope to see you soon!" %username)
