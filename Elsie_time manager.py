@@ -1,19 +1,37 @@
 from datetime import datetime
 import time
 
+######################################################################################################################
+# function to find time difference and hours
+def amount():
+    first_date = datetime(first_year,first_month,first_day,first_hour,first_minute)
+
+    second_date = datetime(second_year,second_month,second_day,second_hour,second_minute)
+
+    difference_between_datetimes = second_date - first_date
+    hours_calculated = difference_between_datetimes.total_seconds()/3600
+    total_amount_received = hours_calculated * PayRate
+    currency = "$"
+    print('Great work %s! You spent %f minutes, which is %f %s on the task. And you earned %s%f\n' % (username,hours_calculated*60,hours_calculated,'hours',currency,total_amount_received))
+    print('Your bill is $200')
+    time.sleep(5)
+    print("Don't mind me, I'm just kidding.\nBye %s, hope to see you soon!" %username)
+#end of function
+#######################################################################################################################    
+
 #INTRO
 username = input("Hi, I'm Elsie, your time and wage manager. What would you like me to call you?\n").title()
 if username =="":
     print("you didn't tell me your name, I'll call you Client.\n")
     username = "Client"
 print("Nice to meet you %s!\n" % username)
-print("I will help you know how long you worked on and how much you earned for a task you're about to start or an already completed one.\n") 
+print("I will help you know how long you worked and how much you earned for the task you're about to start or an already completed one.\n") 
 
 PayRate = 5  # signifies 5 dollars per hour
 
 # algorithm to obtain start date and time
 task_name = input("Please enter the name of the task: \n")#specify name to easily identify task.
-answer = input("Are you starting now?Please type Y for yes and N for no. I'll start the time if you choose Y \n")#ask if user is starting now
+answer = input("Are you starting now? Type Y for yes and N for no. I'll start the time if you choose Y \n")#ask if user is starting now
 if answer == "Y" or answer == "y": # allow room for capitalization error
     print("All the best %s! Call out my name when you're done.I'll be right here.\n" %username)
 
@@ -37,10 +55,11 @@ if answer == "Y" or answer == "y": # allow room for capitalization error
     second_day = st.day
     second_hour = st.hour
     second_minute = st.minute
-    
+
+    amount()    
 
 else:
-    print("Oh! you already completed the task? Good work!\nI'll tell you how long you worked and how much you earned.")
+    print("Oh! you already completed the task? Good work!\n\nI'll tell you how long you worked and how much you earned.\n")
 
     ###########################################################################################
     #function to get date
@@ -150,19 +169,8 @@ else:
         second_hour = int(mylist1[0])
         second_minute = int(mylist1[1])
 
+        amount()
+
     except IndexError:
         print("You entered an invalid input")
 
-# Algorithm to find time difference and hours
-first_date = datetime(first_year,first_month,first_day,first_hour,first_minute)
-
-second_date = datetime(second_year,second_month,second_day,second_hour,second_minute)
-
-difference_between_datetimes = second_date - first_date
-hours_calculated = difference_between_datetimes.total_seconds()/3600
-total_amount_received = hours_calculated * PayRate
-currency = "$"
-print('Great work %s! You spent %f minutes, which is %f %s on the task. And you earned %s%f\n' % (username,hours_calculated*60,hours_calculated,'hours',currency,total_amount_received))
-print('Your bill is $200')
-time.sleep(5)
-print("Don't mind me, I'm just kidding.\nBye %s, hope to see you soon!" %username)
