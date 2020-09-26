@@ -1,5 +1,5 @@
 # Assignments
-These are solutions to assignments that I received while training as a data scientist with Azubi Azubi Africa. 
+These are solutions to assignments that I received while training as a data scientist with Azubi Africa. 
 
 It contains:
 
