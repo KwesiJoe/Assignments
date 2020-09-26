@@ -3,6 +3,5 @@ These are solutions to assignments that I received while training as a data scie
 
 It contains:
 
--Database queries
-
--Elsie.py: An interactive time management application built in python.
+*Database queries
+*Elsie.py: An interactive time management application built in python.
